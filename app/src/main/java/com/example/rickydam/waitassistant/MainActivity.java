@@ -10,6 +10,17 @@ import com.amazonaws.mobileconnectors.pinpoint.PinpointManager;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.google.android.gms.iid.InstanceID;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.support.v4.content.LocalBroadcastManager;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.Log;
+
 public class MainActivity extends AppCompatActivity {
 
     private Button notif;
@@ -17,6 +28,40 @@ public class MainActivity extends AppCompatActivity {
     public static final String LOG_TAG = MainActivity.class.getSimpleName();
 
     public static PinpointManager pinpointManager;
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        // unregister notification receiver
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(notificationReceiver);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // register notification receiver
+        LocalBroadcastManager.getInstance(this).registerReceiver(notificationReceiver,
+                new IntentFilter(PushListenerService.ACTION_PUSH_NOTIFICATION));
+    }
+
+    private final BroadcastReceiver notificationReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Log.d(LOG_TAG, "Received notification from local broadcast. Display it in a dialog.");
+
+            Bundle data = intent.getBundleExtra(PushListenerService.INTENT_SNS_NOTIFICATION_DATA);
+            String message = PushListenerService.getMessage(data);
+
+            new AlertDialog.Builder(MainActivity.this)
+                    .setTitle("Push notification")
+                    .setMessage(message)
+                    .setPositiveButton(android.R.string.ok, null)
+                    .show();
+        }
+    };
 
 
     @Override
@@ -41,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
                     try {
                         String deviceToken =
                                 InstanceID.getInstance(MainActivity.this).getToken(
-                                        "123456789Your_GCM_Sender_Id",
+                                        "470361725873",
                                         GoogleCloudMessaging.INSTANCE_ID_SCOPE);
                         Log.e("NotError", deviceToken);
                         pinpointManager.getNotificationClient()
