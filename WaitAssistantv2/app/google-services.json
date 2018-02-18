@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "954093325829",
+    "firebase_url": "https://wait-assistant-v2-fb.firebaseio.com",
+    "project_id": "wait-assistant-v2-fb",
+    "storage_bucket": "wait-assistant-v2-fb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:954093325829:android:419b35f4daa29830",
+        "android_client_info": {
+          "package_name": "com.comp1601.waitassistantv2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "954093325829-5dkjsn83s26n82vmvsvi522prkb76i9o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAamKTEMW6c97uCDkJEWibvEDMir57l6-U"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
