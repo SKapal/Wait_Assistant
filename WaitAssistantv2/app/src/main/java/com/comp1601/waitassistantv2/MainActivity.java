@@ -21,7 +21,6 @@ import com.google.firebase.database.ValueEventListener;
 public class MainActivity extends AppCompatActivity {
 
     TextView email;
-    private DatabaseReference mDatabase;
 //    private Singleton tmp = Singleton.getInstance();
 
     TableLayout table;
@@ -32,7 +31,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+        DatabaseReference mDatabase;
+
+        //FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
 
         table = findViewById(R.id.activity_main_tl_table);
@@ -40,27 +41,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         mDatabase = FirebaseDatabase.getInstance().getReference("users");
-        retrieveDBElements();
+        //retrieveDBElements();
 
-        // Creating new user node, which returns the unique key value
-        // new user node would be /users/$userid/
-//        String userId = mDatabase.push().getKey();
-//        Person p1 = new Person("Sahil","sahilkapal@cmail.carleton.ca", "6136978347");
-//
-//        mDatabase.child(userId).setValue(p1);
-
-        //email = findViewById(R.id.main_tv_email);
-
-//        email.setOnClickListener(v-> {
-//            String str_email = email.getText().toString();
-//            sendMail(str_email);
-//        });
-
-
-
-    }
-
-    public void retrieveDBElements(){
         mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -79,7 +61,45 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        // Creating new user node, which returns the unique key value
+        // new user node would be /users/$userid/
+//        String userId = mDatabase.push().getKey();
+//        Person p1 = new Person("Sahil","sahilkapal@cmail.carleton.ca", "6136978347");
+//
+//        mDatabase.child(userId).setValue(p1);
+
+        //email = findViewById(R.id.main_tv_email);
+
+//        email.setOnClickListener(v-> {
+//            String str_email = email.getText().toString();
+//            sendMail(str_email);
+//        });
+
+
+
     }
+//
+//    public void retrieveDBElements(){
+//        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                for(DataSnapshot userSnapshot : dataSnapshot.getChildren()){
+//                    //String userKey = userSnapshot.getKey();
+//                    String name = userSnapshot.child("name").getValue(String.class);
+//                    String email = userSnapshot.child("email").getValue(String.class);
+//                    String phone = userSnapshot.child("phoneNum").getValue(String.class);
+//                    addRow(name,email,phone);
+//                    //Log.d("TEST---------", "Name: "+name+", email: "+email+", phone: "+phone);
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
+//    }
 
 
     public void addRow(String name, String email, String phoneNum){

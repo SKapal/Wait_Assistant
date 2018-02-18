@@ -25,14 +25,13 @@ public class RegisterActivity extends AppCompatActivity {
 
     Button submit;
 
-    private DatabaseReference mDatabase;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        DatabaseReference mDatabase;
 
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+        //FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
         mDatabase = FirebaseDatabase.getInstance().getReference("users");
 
