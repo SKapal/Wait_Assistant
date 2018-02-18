@@ -5,9 +5,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.comp1601.waitassistantv2.MainActivity">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="vertical"
+            android:background="#4fa5d5"
+            android:layout_weight="0.01">
+        <Button
+            android:id="@+id/activity_main_back_button"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:text="back">
+        </Button>
+        </LinearLayout>
     <ScrollView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_weight="0.9">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -35,39 +55,14 @@
                         android:padding="10dip"
                         android:gravity="center" />
                 </TableRow>
-                <!--<TableRow>-->
-                <!--<TextView-->
-                <!--android:text=""-->
-                <!--android:padding="10dip"-->
-                <!--android:gravity="center" />-->
-                <!--<TextView-->
-                <!--android:text=""-->
-                <!--android:padding="10dip"-->
-                <!--android:gravity="center" />-->
-                <!--<TextView-->
-                <!--android:text=""-->
-                <!--android:padding="10dip"-->
-                <!--android:gravity="center" />-->
-                <!--</TableRow>-->
-                <!--<TableRow>-->
-                <!--<TextView-->
-                <!--android:text=""-->
-                <!--android:padding="10dip"-->
-                <!--android:gravity="center" />-->
-                <!--<TextView-->
-                <!--android:text=""-->
-                <!--android:padding="10dip"-->
-                <!--android:gravity="center" />-->
-                <!--<TextView-->
-                <!--android:text=""-->
-                <!--android:padding="10dip"-->
-                <!--android:gravity="center" />-->
-                <!--</TableRow>-->
+
             </TableLayout>
 
 
         </LinearLayout>
 
     </ScrollView>
+
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

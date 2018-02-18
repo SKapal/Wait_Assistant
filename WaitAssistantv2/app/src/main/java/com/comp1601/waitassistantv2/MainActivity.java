@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -29,6 +30,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private int count = 1;
     private DatabaseReference mDatabase;
 
+    private Button back;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +40,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         setTitle("List of Patients");
+        back = findViewById(R.id.activity_main_back_button);
 
+        back.setOnClickListener(v -> {
+            Intent backIntent = new Intent(getApplicationContext(), Main2Activity.class);
+            startActivity(backIntent);
+        });
 
 
 
