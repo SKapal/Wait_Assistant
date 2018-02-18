@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
 		<title>Add New Case</title>
 
-    <!-- <link rel="stylesheet" type="text/css" href="indexstyle.css"/> -->
+    <link rel="stylesheet" type="text/css" href="indexstyle.css"/>
     <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
     <script>
     var config = {
@@ -47,14 +47,14 @@
   </head>
 
 <body>
-  <h1>Main Form</h1>
+  <h1>Enter New Medical Patient</h1>
   <div>
   <form onsubmit="return writeUserData(email, name, phone)" name="addCase" method="POST">
     <fieldset>
       <label for="email" class="left">Email Address<span>* </span></label><input name="email" id="email" size="40" required><br>
       <!-- <label for="firstName" class="left">First Name<span>* </span></label><input name="email" id="firstname" size="40" required><br>
       <label for="lastName" class="left">Last Name<span>* </span></label><input name="email" id="lastname" size="40" required><br> -->
-      <label for="name" class="left">Name<span>* </span></label><input name="name" id="name" size="40" required><br>
+      <label for="name" class="left">Full Name<span>* </span></label><input name="name" id="name" size="40" required><br>
       <label for="phone" class="left">Phone Number<span>* </span></label><input name="phone" id="phone" size="40" required><br>
 
       <input type="submit" value="Register">  <input type="reset" value="Reset Form"><br>
