@@ -17,6 +17,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     TableLayout table;
     private int count = 1;
-
+    private DatabaseReference mDatabase;
 
 
     @Override
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         setTitle("List of Patients");
 
-        DatabaseReference mDatabase;
+
 
 
         //FirebaseDatabase.getInstance().setPersistenceEnabled(true);
@@ -70,47 +71,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-
-
-
-        // Creating new user node, which returns the unique key value
-        // new user node would be /users/$userid/
-//        String userId = mDatabase.push().getKey();
-//        Person p1 = new Person("Sahil","sahilkapal@cmail.carleton.ca", "6136978347");
-//
-//        mDatabase.child(userId).setValue(p1);
-
-        //email = findViewById(R.id.main_tv_email);
-
-//        email.setOnClickListener(v-> {
-//            String str_email = email.getText().toString();
-//            sendMail(str_email);
-//        });
-
-
-
     }
-//
-//    public void retrieveDBElements(){
-//        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                for(DataSnapshot userSnapshot : dataSnapshot.getChildren()){
-//                    //String userKey = userSnapshot.getKey();
-//                    String name = userSnapshot.child("name").getValue(String.class);
-//                    String email = userSnapshot.child("email").getValue(String.class);
-//                    String phone = userSnapshot.child("phoneNum").getValue(String.class);
-//                    addRow(name,email,phone);
-//                    //Log.d("TEST---------", "Name: "+name+", email: "+email+", phone: "+phone);
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
-//    }
+
 
 
     public void addRow(String name, String email, String phoneNum){
@@ -143,6 +105,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         row.addView(phoneTextView);
 
         row.setGravity(Gravity.CENTER);
+        row.setPadding(0,40,0,40);
+        row.setBackground(getResources().getDrawable(R.drawable.shape));
 
 
 
@@ -196,6 +160,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             TableRow phone = (TableRow) table.getChildAt(clickedID);
             TextView phoneTextView = (TextView) phone.getChildAt(2);
             phoneString = phoneTextView.getText().toString();
+
         }else{
 
             TableRow email = (TableRow) table.getChildAt(clickedID);
@@ -226,4 +191,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     }
+
+//    public void removeRow(int id){
+//        mDatabase.child("users").child(id+"").removeValue();
+//    }
+
 }

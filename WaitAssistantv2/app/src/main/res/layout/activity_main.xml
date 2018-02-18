@@ -5,62 +5,69 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.comp1601.waitassistantv2.MainActivity">
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+            <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/activity_main_tl_table"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape"
+                android:stretchColumns="1">
+                <TableRow
+                    android:background="@drawable/shape">
 
-    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/activity_main_tl_table"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:stretchColumns="1">
-        <TableRow>
-
-            <TextView
-                android:text="First name:"
-                android:padding="10dip"
-                android:gravity="center" />
-            <TextView
-                android:text="Email:"
-                android:padding="10dip"
-                android:gravity="center" />
-            <TextView
-                android:text="Phone Number"
-                android:padding="10dip"
-                android:gravity="center" />
-        </TableRow>
-        <TableRow>
-            <TextView
-                android:text=""
-                android:padding="10dip"
-                android:gravity="center" />
-            <TextView
-                android:text=""
-                android:padding="10dip"
-                android:gravity="center" />
-            <TextView
-                android:text=""
-                android:padding="10dip"
-                android:gravity="center" />
-        </TableRow>
-        <TableRow>
-            <TextView
-                android:text=""
-                android:padding="10dip"
-                android:gravity="center" />
-            <TextView
-                android:text=""
-                android:padding="10dip"
-                android:gravity="center" />
-            <TextView
-                android:text=""
-                android:padding="10dip"
-                android:gravity="center" />
-        </TableRow>
-    </TableLayout>
+                    <TextView
+                        android:text="First name:"
+                        android:padding="10dip"
+                        android:gravity="center" />
+                    <TextView
+                        android:text="Email:"
+                        android:padding="10dip"
+                        android:gravity="center" />
+                    <TextView
+                        android:text="Phone Number"
+                        android:padding="10dip"
+                        android:gravity="center" />
+                </TableRow>
+                <!--<TableRow>-->
+                <!--<TextView-->
+                <!--android:text=""-->
+                <!--android:padding="10dip"-->
+                <!--android:gravity="center" />-->
+                <!--<TextView-->
+                <!--android:text=""-->
+                <!--android:padding="10dip"-->
+                <!--android:gravity="center" />-->
+                <!--<TextView-->
+                <!--android:text=""-->
+                <!--android:padding="10dip"-->
+                <!--android:gravity="center" />-->
+                <!--</TableRow>-->
+                <!--<TableRow>-->
+                <!--<TextView-->
+                <!--android:text=""-->
+                <!--android:padding="10dip"-->
+                <!--android:gravity="center" />-->
+                <!--<TextView-->
+                <!--android:text=""-->
+                <!--android:padding="10dip"-->
+                <!--android:gravity="center" />-->
+                <!--<TextView-->
+                <!--android:text=""-->
+                <!--android:padding="10dip"-->
+                <!--android:gravity="center" />-->
+                <!--</TableRow>-->
+            </TableLayout>
 
 
-    </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
 </android.support.constraint.ConstraintLayout>
