@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -18,12 +19,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     TextView email;
 //    private Singleton tmp = Singleton.getInstance();
 
     TableLayout table;
+    private static int count = 1;
 
 
 
@@ -35,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         setTitle("List of Patients");
 
         DatabaseReference mDatabase;
+
 
         //FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
@@ -64,6 +67,11 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
+
+
+
 
         // Creating new user node, which returns the unique key value
         // new user node would be /users/$userid/
@@ -124,9 +132,20 @@ public class MainActivity extends AppCompatActivity {
         emailTextView.setText(email);
         phoneTextView.setText(phoneNum);
 
+        emailTextView.setId(count);
+
+        emailTextView.setOnClickListener(this);
+
         row.addView(nameTextView);
         row.addView(emailTextView);
         row.addView(phoneTextView);
+
+        row.setGravity(Gravity.CENTER);
+
+
+
+        table.addView(row,count++);
+//        tmp.setTable(table);
 
         table.addView(row,1);
     }
@@ -159,4 +178,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onClick(View v) {
+        int clickedID = v.getId();
+        //table.getChildAt(1);
+        int a = table.indexOfChild(v);
+        //TextView t = findViewById(clickedID);
+        //String email = t.getText().toString();
+        Log.d("GETTING EMAIL---------",""+clickedID);
+
+
+    }
 }
