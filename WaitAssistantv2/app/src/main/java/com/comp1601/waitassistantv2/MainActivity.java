@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //    private Singleton tmp = Singleton.getInstance();
 
     TableLayout table;
-    private static int count = 1;
+    private int count = 1;
 
 
 
@@ -147,15 +147,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         table.addView(row,count++);
 //        tmp.setTable(table);
 
-        table.addView(row,1);
+//        table.addView(row,1);
     }
 
 
 
-    public void sendMail(String msg) {
+    public void sendMail(String email) {
         Log.i("Send email", "");
 
-        String[] TO = {msg};
+        String[] TO = {email};
         String[] CC = {};
         Intent emailIntent = new Intent(Intent.ACTION_SEND);
         emailIntent.setData(Uri.parse("mailto:"));
@@ -181,11 +181,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         int clickedID = v.getId();
+        TableRow email = (TableRow) table.getChildAt(clickedID);
+        TextView s = (TextView) email.getChildAt(1);
+        String st = s.getText().toString();
+
+        sendMail(st);
+
         //table.getChildAt(1);
         int a = table.indexOfChild(v);
         //TextView t = findViewById(clickedID);
         //String email = t.getText().toString();
-        Log.d("GETTING EMAIL---------",""+clickedID);
+        Log.d("GETTING EMAIL---------",""+st);
 
 
     }
