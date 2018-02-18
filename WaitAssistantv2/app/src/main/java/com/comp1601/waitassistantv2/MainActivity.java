@@ -116,15 +116,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        table.addView(row,1);
     }
 
-    public void sendText(String phone){
+    public void sendText(String phone, int clickId){
         String message = "Your appointment is ready";
 
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:" + phone));
         intent.putExtra("sms_body", message);
         startActivity(intent);
+
+        removeRow(clickId);
     }
 
-    public void sendMail(String email) {
+    public void sendMail(String email, int clickId) {
         Log.i("Send email", "");
 
         String[] TO = {email};
@@ -142,11 +144,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         try {
             startActivity(Intent.createChooser(emailIntent, "Send mail..."));
             finish();
+            removeRow(clickId);
             Log.i("Finished sending email.", "");
         } catch (android.content.ActivityNotFoundException ex) {
             Toast.makeText(MainActivity.this,
                     "There is no email client installed.", Toast.LENGTH_SHORT).show();
         }
+
+
     }
 
 
@@ -161,11 +166,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             TextView phoneTextView = (TextView) phone.getChildAt(2);
             phoneString = phoneTextView.getText().toString();
 
+
         }else{
 
             TableRow email = (TableRow) table.getChildAt(clickedID);
             TextView emailTextview = (TextView) email.getChildAt(1);
             emailString = emailTextview.getText().toString();
+
 
         }
 
@@ -173,9 +180,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Log.d("Before if----------","-------------");
         Log.d("GETTING EMAIL---------",""+emailString);
         Log.d("GETTING PHONE---------",""+phoneString);
-        if(!emailString.equals("")){ sendMail(emailString); }
+        if(!emailString.equals("")){ sendMail(emailString, clickedID); }
         else{
-            sendText(phoneString);
+            sendText(phoneString,clickedID);
         }
 
 
@@ -192,8 +199,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-//    public void removeRow(int id){
-//        mDatabase.child("users").child(id+"").removeValue();
-//    }
+    public void removeRow(int id){
+
+        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            int count = 1;
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot userSnapshot : dataSnapshot.getChildren()){
+                    if(id == count){
+                        String key = userSnapshot.getKey();
+                        Log.d("REMOVAL KEy------", key);
+                        mDatabase.child(key).removeValue();
+
+                    }
+                    count++;
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+    }
 
 }
