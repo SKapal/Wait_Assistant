@@ -19,6 +19,7 @@ public class Main2Activity extends AppCompatActivity {
         register = findViewById(R.id.activity_main2_register_button);
         viewList = findViewById(R.id.activity_main2_viewList_button);
 
+
         register.setOnClickListener(v -> {
             Intent intent1 = new Intent(getApplicationContext(), RegisterActivity.class);
             startActivity(intent1);
