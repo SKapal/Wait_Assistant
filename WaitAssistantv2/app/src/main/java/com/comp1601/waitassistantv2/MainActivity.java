@@ -133,8 +133,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         phoneTextView.setText(phoneNum);
 
         emailTextView.setId(count);
+        phoneTextView.setId(count);
 
         emailTextView.setOnClickListener(this);
+        phoneTextView.setOnClickListener(this);
 
         row.addView(nameTextView);
         row.addView(emailTextView);
@@ -150,7 +152,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        table.addView(row,1);
     }
 
+    public void sendText(String phone){
+        String message = "Your appointment is ready";
 
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:" + phone));
+        intent.putExtra("sms_body", message);
+        startActivity(intent);
+    }
 
     public void sendMail(String email) {
         Log.i("Send email", "");
@@ -181,17 +189,40 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         int clickedID = v.getId();
-        TableRow email = (TableRow) table.getChildAt(clickedID);
-        TextView s = (TextView) email.getChildAt(1);
-        String st = s.getText().toString();
+        String phoneString = "";
+        String emailString = "";
 
-        sendMail(st);
+        if(v.getLeft() > 750){
+            TableRow phone = (TableRow) table.getChildAt(clickedID);
+            TextView phoneTextView = (TextView) phone.getChildAt(2);
+            phoneString = phoneTextView.getText().toString();
+        }else{
+
+            TableRow email = (TableRow) table.getChildAt(clickedID);
+            TextView emailTextview = (TextView) email.getChildAt(1);
+            emailString = emailTextview.getText().toString();
+
+        }
+
+
+        Log.d("Before if----------","-------------");
+        Log.d("GETTING EMAIL---------",""+emailString);
+        Log.d("GETTING PHONE---------",""+phoneString);
+        if(!emailString.equals("")){ sendMail(emailString); }
+        else{
+            sendText(phoneString);
+        }
+
+
 
         //table.getChildAt(1);
         int a = table.indexOfChild(v);
         //TextView t = findViewById(clickedID);
         //String email = t.getText().toString();
-        Log.d("GETTING EMAIL---------",""+st);
+        Log.d("GETTING EMAIL---------",""+phoneString);
+
+        emailString = "";
+        phoneString = "";
 
 
     }
