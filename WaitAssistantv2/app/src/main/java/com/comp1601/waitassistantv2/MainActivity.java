@@ -31,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        setTitle("List of Patients");
+
         DatabaseReference mDatabase;
 
         //FirebaseDatabase.getInstance().setPersistenceEnabled(true);
@@ -109,20 +112,23 @@ public class MainActivity extends AppCompatActivity {
         row.setLayoutParams(lp);
 
         TextView nameTextView = new TextView(this);
-        TextView emailTextView= new TextView(this);
-        TextView phoneTextview = new TextView(this);
+        nameTextView.setGravity(Gravity.CENTER);
+
+        TextView emailTextView = new TextView(this);
+        emailTextView.setGravity(Gravity.CENTER);
+
+        TextView phoneTextView = new TextView(this);
+        phoneTextView.setGravity(Gravity.CENTER);
 
         nameTextView.setText(name);
         emailTextView.setText(email);
-        phoneTextview.setText(phoneNum);
+        phoneTextView.setText(phoneNum);
 
         row.addView(nameTextView);
         row.addView(emailTextView);
-        row.addView(phoneTextview);
-        row.setGravity(Gravity.CENTER);
-        table.addView(row,1);
-//        tmp.setTable(table);
+        row.addView(phoneTextView);
 
+        table.addView(row,1);
     }
 
 
